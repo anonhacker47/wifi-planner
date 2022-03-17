@@ -1,7 +1,9 @@
 let undo = document.getElementById('undo');
 let draw = document.getElementById('line');
 let select = document.getElementById('select');
-let drawable = false
+let drawable = false;
+const range = document.getElementById("myRange");
+const canva = document.getElementById("canva");
 
 //choose draw or selection
 window.onload = ()=>{
@@ -13,7 +15,7 @@ window.onload = ()=>{
         canvas.style.width = `${actualImage.width}px`;
         canvas.style.height = `${actualImage.height}px`;
     }
-
+    range.value = 0.5
 }
 
 draw.onchange = ()=>{
@@ -42,8 +44,7 @@ undo.addEventListener('click', ()=>{
 
 //Transparency Slider
 
-const range = document.getElementById("myRange")
-const canva = document.getElementById("canva")
+
 
 range.addEventListener("input", (e) => {
     canva.style.fillOpacity = e.target.value;

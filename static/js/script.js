@@ -7,6 +7,8 @@ var materialBtn = document.getElementsByClassName("material");
 var lineY = document.getElementById("lineY");
 var lineX = document.getElementById("lineX");
 
+num = 0;
+
 const colors = {
   WOOD: "#CC9544",
   METAL: "#B2B1B9",
@@ -39,6 +41,7 @@ svgPoint = (element, x, y) => {
 
 
 canvas.addEventListener("mousedown", (e) => {
+  num = 1;
   let svgP = svgPoint(canvas, e.clientX, e.clientY);
   if (drawable) {
     if (!isDown) {
@@ -65,7 +68,8 @@ canvas.addEventListener("mousedown", (e) => {
 });
 
 canvas.addEventListener('mouseup', ()=>{
-  isDown = false
+  isDown = false;
+  num = 0;
 })
 
 //endpoit of line
@@ -86,4 +90,16 @@ document.getElementById('canvas-box').scrollTop = (h/2)-(h/3);
 document.getElementById('canvas-box').scrollLeft =  (w/2)-(w/4);
 
 
-
+// work in progress
+canvas.onmousemove = (e)=>{
+  for (let i = 7; i < svgInfo.childNodes.length - num; i++) {
+    let element = svgInfo.childNodes[i];
+    let p = svgPoint(canvas, e.clientX, e.clientY)
+    if (p.x == element.attributes.x2.nodeValue && p.y == element.attributes.y2.nodeValue || p.x == element.attributes.x1.nodeValue && p.y == element.attributes.y1.nodeValue) {
+      canvas.style.cursor = "all-scroll";
+    }
+    else{
+      canvas.style.cursor = "crosshair";
+    }
+  }
+}

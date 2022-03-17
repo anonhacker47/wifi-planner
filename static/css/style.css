@@ -193,6 +193,10 @@ main {
   width: 1200px;
   margin: auto;
 }
+.tool svg{
+  width: 1rem;
+  height: 1rem;
+}
 /* .lineX {
   position: absolute;
   bottom: 50%;
@@ -249,9 +253,11 @@ main {
 label{
   cursor: pointer;
 }
+#select:checked ~ #select-lbl button .path, #line:checked ~ #line-lbl button .path{
+    fill: #27272f;
+}
 #select:checked ~ #select-lbl button, #line:checked ~ #line-lbl button{
     background: #ffffff;
-    color: #27272f;
 }
 .mt{
   margin-top: 1rem;
@@ -299,5 +305,5 @@ label{
 } 
 
 #canva {
-  fill-opacity: 0;
+  fill-opacity: 0.5;
 }
