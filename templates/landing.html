@@ -1,74 +1,68 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{url_for('static', filename='css/landing.css')}}">
+    <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans:400,600" rel="stylesheet">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/landing-style.css')}}">
     <link rel="stylesheet" href="{{ url_for('static', filename='node_modules/cropperjs/dist/cropper.css')}}">
     <title>wifi planner</title>
 </head>
 <body>
-    <div class="container">
-        <div class="heading">Wifi Planner</div>
-        <div class="navs">
-        <div class="hvr-btn">
-        <div class="btn-bg">
-            <div class="front">Draw on plan</div>
-            <div class="back">
-                Upload an image and trace the image on canvas
-                <a class="more" id="open">see more</a>
-            </div>
-        </div>
-        </div>
-        <div class="hvr-btn">
-        <div class="btn-bg">
-            <div class="front">draw on plain canvas</div>
-            <div class="back">
-                draw on a plain canvas from scratch
-                <a href="/home" class="more">see more</a>
-            </div>
-        </div>
-        </div>
-        </div>
-    </div>
-        <div class="popup" id="popup">
-            
-            
-            <!-- place crop widgets and elements here -->
-            <div class="display-area">
-    <div class="close"><span id="close">x</span></div>
-</div>
-        <div class="container-item-box-b4" id="cont">
-            <div class="preview" id="image-box"></div>
-            <input type="file" name="pic" id="import" accept="image/*">
-            <label for="import" class="upload-btn">
-                    upload
-            </label>
-            <button class="crop-btn" id="crop-btn">Crop</button>
-        </div>
-        <div class="property-section" id="scale-section">
-            <div class="show-pic" id="sample">
-            </div>
-            <div class="setup">
-                <form method="POST" action="/home">
-                <h2 class="prop-head my">project setup</h2>
-                <input type="text" class="inputs my"  placeholder="Project Name" name="name" id="name">
-                <input type="text" name="image" id="planimg" style="display: none;">
-                <h3 class="prop-head my">scale</h3>
-                <div class="scale-control my">
-                    <input type="number" min="1" max="20" id="scale" value="1" class="inputs scale-val-in" name="scale">
-                </div>
-                <button type="submit" class="my post">next</button>
-            </form>
-            </div>
-        </div>
-</div>
+    <main>
+    <header>
+        <nav>
+            <a class="logo-box" href="">
+                <img src="{{url_for('static', filename='assets/icon.svg')}}" alt="logo" class="logo">
+            </a>
+        </nav>
+    </header>
 
+    <section class="content sec1" id="opening">
+        <div class="btn-area">
+            <div class="btn-area-title">
+                wifi planner
+            </div>
+            <div class="btn-area-body">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius blanditiis repudiandae nihil veritatis facilis laudantium iusto ad deserunt magnam earum cumque tempore sed nostrum, fugiat recusandae, expedita pariatur quod. Repellat.
+            </div>
+            <div class="btn-area-btns">
+                <a class="btn btn-doi" id="btn-doi">Draw On Image</a>
+                <a href="/home" class="btn btn-dob" id="btn-doi">Draw On Blank</a>
+            </div>
+        </div>
+        <div class="particles">
+            <img class="plan-img" src="{{url_for('static', filename='assets/plan.png')}}" alt="">
+            <!-- r2 and r1 being right wifi icon -->
+            <img src="{{url_for('static', filename='assets/wifi.svg')}}" class="wifi-img r2" alt="" style="height: 3rem;">
+            <img src="{{url_for('static', filename='assets/wifi.svg')}}" class="wifi-img r1" alt="" style="height: 2.5rem;">
 
-    <script src="{{url_for('static', filename='js/landing.js')}}"></script>
-    <script src="{{url_for('static', filename='js/crop.js')}}"></script>
+            <img src="{{url_for('static', filename='assets/wifi.svg')}}" class="wifi-img" alt="" style="height: 4rem;">
+
+            <!-- l2 and l1 being left wifi icon -->
+            <img src="{{url_for('static', filename='assets/wifi.svg')}}" class="wifi-img-l2" alt="" style="height: 3.3rem;">
+            <img src="{{url_for('static', filename='assets/wifi.svg')}}" class="wifi-img-l1" alt="" style="height: 2.8rem;">
+
+        </div>
+    </section>
+    <section class="upload content sec2" id="upload">
+        <a class="close" id="close">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Pro 6.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M310.6 361.4c12.5 12.5 12.5 32.75 0 45.25C304.4 412.9 296.2 416 288 416s-16.38-3.125-22.62-9.375L160 301.3L54.63 406.6C48.38 412.9 40.19 416 32 416S15.63 412.9 9.375 406.6c-12.5-12.5-12.5-32.75 0-45.25l105.4-105.4L9.375 150.6c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L160 210.8l105.4-105.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-105.4 105.4L310.6 361.4z" fill="#fff"/></svg>
+        </a>
+        <div class="upload-box">
+            <div class="img-box" id="image-box"></div>
+            <div class="btn-box">
+            <label for="pic-upload" class="btn btn-dob">upload</label>
+            <input type="file" name="upload" id="pic-upload" accept="image/*" hidden>
+            <a class="btn btn-doi" id="crop-btn">crop</a>
+            </div>
+        </div>
+        <form action="/home" method="post" id="imgForm" hidden><input type="text" name="planImage" id="planImage"></form>
+    </section>
+    </main>    
     <script src="{{ url_for('static', filename='node_modules/cropperjs/dist/cropper.js')}}"></script>
+    <script src="{{url_for('static', filename='js/crop.js')}}"></script>
+    <script src="{{url_for('static', filename='js/landing-script.js')}}"></script>
 </body>
 </html>

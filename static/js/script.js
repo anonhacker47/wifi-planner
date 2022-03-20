@@ -1,4 +1,4 @@
-let clickedOnce = false;
+let isDown = false;
 var canvas = document.getElementById("canvas");
 var x1;
 var y1;
@@ -38,56 +38,45 @@ svgPoint = (element, x, y) => {
 };
 
 
-canvas.addEventListener("click", (e) => {
+canvas.addEventListener("mousedown", (e) => {
   let svgP = svgPoint(canvas, e.clientX, e.clientY);
   if (drawable) {
-    if (!clickedOnce) {
+    if (!isDown) {
       x1 = svgP.x;
       y1 = svgP.y;
-      console.log(x1, y1);
       let newLine = document.createElementNS(svgns, "line");
       newLine.setAttribute("x1", `${x1}`);
       newLine.setAttribute("y1", `${y1}`);
       newLine.setAttribute("x2", `${x1}`);
       newLine.setAttribute("y2", `${y1}`);
-      newLine.setAttribute(
-        "style",
-        `stroke:${COLOR};stroke-width:10;stroke-linecap:round`
-      );
-      newLine.setAttribute(
-        "style",
-        `stroke:${COLOR};stroke-width:10;stroke-linecap:square`
-      );
       
-      newLine.setAttribute('onclick', 'changeProp(this)');
+      newLine.setAttribute(
+        "style",
+        'stroke-width:10;stroke-linecap:square'
+      );
+
+      
+      newLine.setAttribute('stroke', `${COLOR}`);
 
       canvas.append(newLine);
-      clickedOnce = true;
-    } else {
-      clickedOnce = false;
+      isDown = true;
     }
   }
 });
 
+canvas.addEventListener('mouseup', ()=>{
+  isDown = false
+})
+
 //endpoit of line
 canvas.addEventListener("mousemove", (e) => {
   let svgP = svgPoint(canvas, e.clientX, e.clientY);
-  if (clickedOnce) {
+  if (isDown) {
     canvas.lastChild.setAttribute("x2", `${svgP.x}`); //e.layerx
     canvas.lastChild.setAttribute("y2", `${svgP.y}`); //e.layery
   }
-  // lineX.style.top = `${e.pageY}px`; //e,pagey
-  // lineY.style.left = `${e.pageX}px`; //e.pagex
 });
 
-// showing svg lines in console 
-// this is on test state
-changeProp = (e)=>{
-  if (!drawable) {
-    console.log('clicked', e);   
-    alert(e);
-  }
-}
 
 // set initial scroll to middle
 // not an optimal solution
@@ -95,3 +84,6 @@ var h = document.getElementById('canvas-box').scrollWidth;
 var w = document.getElementById('canvas-box').scrollHeight;
 document.getElementById('canvas-box').scrollTop = (h/2)-(h/3);
 document.getElementById('canvas-box').scrollLeft =  (w/2)-(w/4);
+
+
+
