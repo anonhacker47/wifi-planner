@@ -1,6 +1,7 @@
 let undo = document.getElementById('undo');
 let draw = document.getElementById('line');
 let select = document.getElementById('select');
+let materialBox = document.getElementById('mlbox');
 let drawable = false
 
 //choose draw or selection
@@ -20,6 +21,7 @@ draw.onchange = ()=>{
     if (draw.checked == true) {
         drawable = true;
         canvas.style.cursor = "crosshair";
+        materialBox.style.visibility = "visible";
 
     }
 }
@@ -29,6 +31,7 @@ select.onchange = ()=>{
     if (select.checked == true) {
         drawable = false;
         canvas.style.cursor = "pointer";
+        materialBox.style.visibility = "hidden";
     }
 }
 
