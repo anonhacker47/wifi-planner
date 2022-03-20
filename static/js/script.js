@@ -84,6 +84,3 @@ var h = document.getElementById('canvas-box').scrollWidth;
 var w = document.getElementById('canvas-box').scrollHeight;
 document.getElementById('canvas-box').scrollTop = (h/2)-(h/3);
 document.getElementById('canvas-box').scrollLeft =  (w/2)-(w/4);
-
-
-

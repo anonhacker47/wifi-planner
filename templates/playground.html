@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{{url_for('static', filename='css/playground-style.css')}}" />
+    <link rel="icon" href="{{url_for('static', filename='assets/logo.jpeg')}}" />
+    <script
+      src="https://kit.fontawesome.com/a9deb815db.js"
+      crossorigin="anonymous"
+    ></script>
+    <title>wifi</title>
+  </head>
+  <body>
+    <!-- navbar area  -->
+    <nav>
+      <div class="logo"><img src="{{url_for('static', filename='assets/icon.svg')}}" alt="" /></div>
+      <div class="nav-buttons">
+        <button class="btns d2l">
+          <i class="fas fa-pencil-alt"></i>ground floor
+        </button>
+        <a href="/" class="btns d2l" style="text-decoration: none; display: flex;justify-content: center; align-items: center;">
+          <i class="fas fa-file-import"></i>
+          exported plan
+        </a>
+        <button class="btns d2l"><i class="fas fa-save"></i>Save Final</button>
+        <button class="btns dwn" id="export">
+          <i class="fas fa-cloud-download-alt" id="export"></i>Share Result
+        </button>
+        <form action="/out" method="post" id="svg-form" hidden><input type="text" name="svg" id="svg-data" hidden></form>
+      </div>
+    </nav>
+
+
+    <main>
+      <!-- left container for svg -->
+      <div class="left">
+        <div class="canvas-boxx" id="canvas-boxx">
+            <svg id="canvas" viewBox="0 0 {{data['size'][0]}} {{data['size'][1]}}">
+              {%for line in data['svg']%}
+              {{line.x1}}
+              <line x1="{{line.x1}}" y1="{{line.y1}}" x2="{{line.x2}}" y2="{{line.y2}}" style="stroke-width:10;stroke-linecap:square" stroke="{{line.stroke}}"></line>
+              {%endfor%}
+            </svg>
+        </div>
+
+
+
+      </div>
+
+      <!-- container for tools  -->
+      <div class="right">
+        <div class="tool-box">
+          <form action="/action_page.php">
+            <label for="cars">Choose your wifi router: </label>
+            <select name="routers" id="routers">
+              <option value="volvo">Volvo</option>
+              <option value="saab">Saab</option>
+              <option value="opel">Opel</option>
+              <option value="audi">Audi</option>
+            </select>
+            <!-- <br><br>
+            <input type="submit" value="Submit"> -->
+          </form>
+          </div>
+          
+          <div id="mydiv"><div class="circle" id="circle">
+            <div id = "image">
+            <img src="{{url_for('static', filename='assets/router.svg')}}" alt="" />
+          </div>
+            </div>
+            </div>
+          </div>
+    </main>
+    <script src="{{url_for('static', filename='js/playground.js')}}"></script>
+    <script src="{{url_for('static', filename='js/navbuttons.js')}}"></script>
+  </body>
+</html>

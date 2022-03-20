@@ -2,6 +2,7 @@ let undo = document.getElementById('undo');
 let draw = document.getElementById('line');
 let select = document.getElementById('select');
 let materialBox = document.getElementById('mlbox');
+
 let drawable = false
 
 //choose draw or selection
@@ -22,7 +23,6 @@ draw.onchange = ()=>{
         drawable = true;
         canvas.style.cursor = "crosshair";
         materialBox.style.visibility = "visible";
-
     }
 }
 
