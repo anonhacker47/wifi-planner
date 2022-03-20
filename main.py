@@ -26,13 +26,11 @@ def view():
     if request.method == 'POST':
         svg = request.form.get('svg')
         svg = json.loads(svg)
-        r = Tk()
-        c = Canvas(r, background="white", width=1800, height=1000)
-        for i in svg:
-            c.create_line(i['x1'], i['y1'],i['x2'],i['y2'],fill=i['stroke'], width=2)
-        c.pack()
-        r.mainloop()
-        return str(svg)
+        size = int(request.form.get('width')), int(request.form.get('height'))
+        return {
+            'svg':svg,
+            'size':size
+        }
 
 if __name__ == '__main__':
     app.run(debug=True)

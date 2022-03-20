@@ -1,6 +1,8 @@
 const exportBtn = document.getElementById('export');
 const svgInfo = document.getElementById('canvas');
 const svgInput = document.getElementById('svg-data');
+const hgt = document.getElementById('height');
+const wdh = document.getElementById('width');
 
 exportBtn.addEventListener('click', ()=>{
     var svgText = svgInfo.childNodes;
@@ -18,5 +20,7 @@ exportBtn.addEventListener('click', ()=>{
         myData = [...myData, info];
     }
     svgInput.value = JSON.stringify(myData);
+    wdh.value = canvas.clientWidth;
+    hgt.value = canvas.clientHeight;
     document.getElementById('svg-form').submit();
 })
